@@ -1,6 +1,6 @@
 {
     "$origin": "blacksite.secrete.",
     "a": [
-        { "name": "@", "ttl": 400, "value": "127.0.0.1" }
+        { "name": "@", "ttl": 400, "value": "172.25.108.172" }
     ]
 }

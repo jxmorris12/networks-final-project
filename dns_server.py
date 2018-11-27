@@ -71,14 +71,17 @@ def getzone(domain):
     global zonedata
 
     zone_name = '.'.join(domain)
-    return zonedata[zone_name]
+    if zone_name in zonedata:
 
+        return zonedata[zone_name]
+    else:
+        return {'$origin': 'DNE', 'a': [{'name': '@', 'ttl': 400, 'value': '127.0.0.1'}]}
 
 def get_recs(data):
     domain, questiontype = getquestiondomain(data)
-    qt = ''
-    if questiontype == b'\x00\x01':
-        qt = 'a'
+    qt = 'a'
+    # if questiontype == b'\x00\x01':
+    #     qt = 'a'
 
     zone = getzone(domain)
 
@@ -144,12 +147,13 @@ def buildresponse(data):
     for record in records:
         # print(record)
         dns_body += rectobytes(domainname, rectype, record["ttl"], record["value"])
-    print(dns_header)
-    print(dns_question)
-    print(dns_body)
-    return dns_header + dns_question + dns_body
+    if domainname[0] == 'blacksite' and domainname[1] == 'secrete':
+        print(dns_header)
+        print(dns_question)
+        print(dns_body)
+        return dns_header + dns_question + dns_body
 
-
+print("DNS Started")
 while True:
     data, address = sock.recvfrom(512)
     r = buildresponse(data)
