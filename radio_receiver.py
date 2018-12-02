@@ -21,7 +21,7 @@ def read_n_plot():
     demod_result = demodulate(samples)
 
     write_to_txt(demod_result)
-    write_to_audio(demod_result)
+    write_to_audio(demod_result, "recmusic.wav")
     plot_t(demod_result)
 
     # use matplotlib to estimate and plot the PSD

@@ -20,9 +20,9 @@ def demodulate(IQ_samples):
     return result
 
 
-def write_to_audio(demod_sample):
+def write_to_audio(demod_sample, filename):
     rate = 2400000
-    writer.write("signal3.wav", rate, demod_sample)
+    writer.write(filename, rate, demod_sample)
 
 
 def write_to_txt(demod_sample):
