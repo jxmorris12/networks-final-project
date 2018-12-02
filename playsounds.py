@@ -1,8 +1,8 @@
 import numpy as np 
-# import sounddevice as sd
+import sounddevice as sd
 # import scipy.io.wavfile as wav
 # import matplotlib.pyplot as plt
-import scikits.audiolab
+#import scikits.audiolab
 from demod import *
 
 
@@ -20,23 +20,30 @@ def gen_tone(amplitude,tone_duration, frequency):
 
 
 def play(tone):
-    scikits.audiolab.play(tone, fs=AUDIO_SAMPLE_RATE)
-    # print(type(tone[0]))
-    # sd.play(tone, AUDIO_SAMPLE_RATE)
+    #scikits.audiolab.play(tone, fs=AUDIO_SAMPLE_RATE)
+
+    sd.play(tone, AUDIO_SAMPLE_RATE)
 
 #fSK modulation 
 def modulateFSK(array, tone1, tone2): 
     for i in array: 
-        if i == 1: 
+        if i:
+            print('1')
             play(tone1)
         else:
+            print('0')
             play(tone2)
+
+def modulate_array(array):
+    tone1 = gen_tone(0, 1, 100)
+    tone2 = gen_tone(100, 1, 100)
+    modulateFSK(array, tone1, tone2)
 
 
 def main():
     tone1 = gen_tone(100,1, 100)
     tone2 = gen_tone(100,1, 900)
-    
+
     while True:
         print("Please enter Message")
         message = input()

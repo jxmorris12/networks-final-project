@@ -1,15 +1,9 @@
-import sounddevice as sd
-import numpy as np
-from demod import *
+from playsounds import modulate_array
+import bitarray
 
+def radio_transmit(str):
+    ba = bitarray.bitarray()
+    ba.frombytes(str.encode('utf-8'))
+    modulate_array(ba.tolist())
 
-def play_sound(data_array):
-    rate = 24000
-    sd.play(data_array, rate)
-
-
-def write_test_wav():
-    rate = 2400000
-    a = np.empty(rate * 5)
-    a.fill(5)
-    write_to_audio(a, 'test.wav')
+radio_transmit('Hi')
