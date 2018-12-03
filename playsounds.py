@@ -3,7 +3,6 @@ import sounddevice as sd
 # import scipy.io.wavfile as wav
 # import matplotlib.pyplot as plt
 #import scikits.audiolab
-from demod import *
 
 
 AUDIO_SAMPLE_RATE = 44100  # Hz
@@ -28,27 +27,28 @@ def play(tone):
 def modulateFSK(array, tone1, tone2): 
     for i in array: 
         if i:
-            print('1')
             play(tone1)
         else:
-            print('0')
             play(tone2)
 
 def modulate_array(array):
-    tone1 = gen_tone(0, 1, 100)
-    tone2 = gen_tone(100, 1, 100)
+    tone1 = gen_tone(100, 1, 100)
+    tone2 = gen_tone(100, 1, 900)
     modulateFSK(array, tone1, tone2)
 
 
-def main():
-    tone1 = gen_tone(100,1, 100)
-    tone2 = gen_tone(100,1, 900)
-
-    while True:
-        print("Please enter Message")
-        message = input()
-        array = [1, 1, 0, 0, 1]
-        modulateFSK(array, tone1, tone2)
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     # print("wahoo")
+#     # modulate_array([1, 1, 0, 0, 1])
+#     tone1 = gen_tone(100,1, 100)
+#     tone2 = gen_tone(100,1, 900)
+#
+#     while True:
+#         print("Please enter Message")
+#         message = input()
+#         array = [1, 1, 0, 0, 1]
+#         # modulateFSK(array, tone1, tone2)
+#         modulate_array(array)
+#
+# if __name__ == '__main__':
+#     main()
