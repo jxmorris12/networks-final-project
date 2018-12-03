@@ -4,7 +4,7 @@ import time
 
 def radio_transmit(s):
     ba = bitarray.bitarray()
-    ba.frombytes(s)
+    ba.frombytes(s.encode('utf-8'))
     for i in range(0, 30):
         modulate_array(ba.tolist())
         time.sleep(10)

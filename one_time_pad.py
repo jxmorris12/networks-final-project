@@ -20,8 +20,16 @@ def random_ascii():
 def generate(length):
 	return ''.join([random_ascii() for _ in range(length)])
 
-# generate and safe a one time pad ASCII string
+# generate and save a one time pad ASCII string
 def generate_and_save(length):
 	secret_key = generate(length)
 	wr = open(one_time_pad_file, 'w')
 	wr.write(secret_key)
+
+# read secret key from file
+def read_key_from_disk():
+	return open(one_time_pad_file).read()
+
+# encrypt or decrypt a string with one time pad
+def crypto(string, secret_key):
+	return ''.join(chr(ord(a) ^ ord(b) + ascii_beg) for a,b in zip(string, secret_key))
