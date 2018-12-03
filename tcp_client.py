@@ -1,4 +1,5 @@
 import subprocess
+from radio_transmitter import radio_transmit
 from socket import *
 
 serverName = 'localhost'
@@ -13,8 +14,9 @@ message = clientSocket.recv(windowSize).decode()
 
 while message != "exit":
 	print(message)
-	clientSocket.send('ACK'.encode())
 	message = clientSocket.recv(windowSize).decode()
+	ack = radio_transmit(message)
+	clientSocket.send(ack.encode())
 
 clientSocket.close()
 print('Connection closed.')

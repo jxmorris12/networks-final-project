@@ -17,7 +17,6 @@ PORT = 80  # Arbitrary non-privileged port (port number > 1024)
 
 HTML_BODY = 'Secret black Site<br>'
 
-
 def html_response(ip_address):
     html_message = 'HTTP/1.0 200 OK\r\n'
     html_message += 'Content-Type:text/html\r\n'
@@ -28,13 +27,11 @@ def html_response(ip_address):
     html_message += '</head></html>\r\n'
     return html_message
 
-
 def create_server_socket():
     s = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
     s.bind((HOST, PORT))
     s.listen(1)
     return s
-
 
 def wait_for_client(s):
     while True:
@@ -47,7 +44,6 @@ def wait_for_client(s):
             print('Responded to', src_ip + ':' + str(src_port))
         except socket.error:
             exit(-1)
-
 
 def handle_sigint(s):
     def handler(signum, frame):
