@@ -12,7 +12,7 @@ import errno
 import signal
 import socket
 
-HOST = ''  # Symbolic name meaning all available interfaces
+HOST = '127.0.0.1'  # Symbolic name meaning all available interfaces
 PORT = 80  # Arbitrary non-privileged port (port number > 1024)
 
 HTML_BODY = 'Secret black Site<br>'
