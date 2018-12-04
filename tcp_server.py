@@ -1,6 +1,6 @@
 from socket import *
 
-serverPort = 54321
+serverPort = 4000
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind(('', serverPort))
 serverSocket.listen(1)

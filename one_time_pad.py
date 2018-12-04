@@ -30,6 +30,11 @@ def generate_and_save(length):
 def read_key_from_disk():
 	return open(one_time_pad_file).read()
 
+# generate a secret key and encrypt a string 
+def strong_encrypt(string):
+	secret_key = generate(len(string))
+	return crypto(string, secret_key)
+
 # encrypt or decrypt a string with one time pad
 def crypto(string, secret_key):
-	return ''.join(chr(ord(a) ^ ord(b) + ascii_beg) for a,b in zip(string, secret_key))
+	return ''.join(chr(ord(a) ^ ord(b)) for a,b in zip(string, secret_key))

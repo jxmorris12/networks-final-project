@@ -4,7 +4,7 @@ from radio_transmitter import radio_transmit
 from socket import *
 
 serverName = 'localhost'
-serverPort = 54321
+serverPort = 4000
 
 windowSize = 1024*4
 
@@ -17,7 +17,9 @@ message = clientSocket.recv(windowSize).decode()
 while message != "exit":
 	print(message)
 	packet = packetize(message)
-	print("Transmitting packet: '" + packet + "'")
+	encrypted_packet = packetize(message, encrypt=True)
+	print("Original packet: '" + packet + "'")
+	print("Transmitting encrypted_packet: '" + encrypted_packet + "'")
 	radio_transmit(packet)
 	clientSocket.send('ACK'.encode())
 	message = clientSocket.recv(windowSize).decode()
